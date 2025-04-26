@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Countries</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<style>
+    .body{
+        display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+    }
+    .all{
+        position: relative;
+        width: 100%;
+        height:100%;
+        background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://github.com/Asabeneh/30-Days-Of-JavaScript/blob/master/26_Day_World_countries_data_visualization_2/26_day_starter/images/globe-2.jpg?raw=true');
+        width: auto;
+        padding: 20px;
+        height:auto;
+        background-size: cover;
+        background-position: center;
+        background: position y 30px; 
+        cursor: pointer;
+    }
+    .heading{
+        text-align: center;
+        font-size: 50px;
+        color: white;
+        margin-top: 50px;
+        letter-spacing: 5px;
+    }
+    .para1{
+        color: white;
+        text-align: center;
+        font-weight: 700;
+        font-size: 15px;
+    }
+    .boxes{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .box1{
+        border:none;
+        background-color: blueviolet;
+        color: white;
+        height: 35px;
+        margin-right: 1%;
+    }
+    .box2{
+        border:none;
+        background-color: blueviolet;
+        color: white;
+        height:35px;
+        margin-right: 1%;
+    }
+    .box3{
+        border:none;
+        background-color: blueviolet;
+        color: white;
+        height:35px
+    }
+    .box1:hover{
+        background-color: rgb(69, 1, 133);
+    }
+    .box2:hover{
+        background-color: rgb(69, 1, 133);
+    }
+    .box3:hover{
+        background-color: rgb(69, 1, 133);
+    }
+    .Search{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        margin-top: 1%;
+    }
+    #enter{
+        border:1px solid rgb(174, 174, 184);
+        text-align: center;
+        background-color: white;
+        border-radius: 20px;
+        margin-bottom: 50px;
+        height: 30px;
+        width:30%
+    }
+    .click{
+        margin-bottom: 47px;
+        color: white;
+        margin-left: 20px;
+    }
+    .country-Box{
+        width:120px;
+        height:130px;
+        margin:10px;
+        box-sizing: 50px;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(rgba(131, 116, 160, 0.5), rgba(0, 0, 0, 0.5)),url('https://github.com/Asabeneh/30-Days-Of-JavaScript/blob/master/26_Day_World_countries_data_visualization_2/26_day_starter/images/map_image.jpg?raw=true');
+        background-size: cover;
+        background-position: center;
+        border:1px solid grey;
+        font-weight: bold;
+        color: white;
+        border-radius: 2%;
+    }
+    .output{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    .para2{
+        text-align: center;
+        color:white;
+        font-weight: 600;
+    }
+    .num{
+        color: greenyellow;
+    }
+    .alpha{
+        color: red;
+    }
+</style>
+<body>
+    <div class="all">
+        <div class="new">
+        <h1 class="heading">WORLD COUNTRIES LIST</h1>
+        <p class="para1">Total Number of Countries: 193</p>
+        <p class="para2">Countries containing <span class="alpha"></span> are <span class="num"></span></p>
+        <div class="boxes">
+            <button class="box1">Starting Word</button>
+            <button class="box2">Search with any word</button>
+            <button class="box3">||</button>
+        </div>
+        <div class="Search">
+            <input type="text" id="enter" placeholder="Search Country...">
+            <div id='btn' class="click" ><i class="fa-solid fa-magnifying-glass"></i></div>
+        </div>
+    </div>
+</div>
+        <div class="output"></div>
+    <script>
+        const countries = [
+        'Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Antigua and Barbuda', 
+        'Argentina', 'Armenia', 'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahrain', 
+        'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin', 'Bhutan', 
+        'Bolivia', 'Bosnia and Herzegovina', 'Botswana', 'Brazil', 'Brunei', 'Bulgaria', 
+        'Burkina Faso', 'Burundi', 'Cabo Verde', 'Cambodia', 'Cameroon', 'Canada', 
+        'Central African Republic', 'Chad', 'Chile', 'China', 'Colombia', 'Comoros', 
+        'Congo', 'Costa Rica', 'Croatia', 'Cuba', 'Cyprus', 'Czech Republic', 
+        'Democratic Republic of the Congo', 'Denmark', 'Djibouti', 'Dominica', 
+        'Dominican Republic', 'East Timor', 'Ecuador', 'Egypt', 'El Salvador', 
+        'Equatorial Guinea', 'Eritrea', 'Estonia', 'Eswatini', 'Ethiopia', 'Fiji', 
+        'Finland', 'France', 'Gabon', 'Gambia', 'Georgia', 'Germany', 'Ghana', 'Greece', 
+        'Grenada', 'Guatemala', 'Guinea', 'Guinea-Bissau', 'Guyana', 'Haiti', 'Honduras', 
+        'Hungary', 'Iceland', 'India', 'Indonesia', 'Iran', 'Iraq', 'Ireland', 'Israel', 
+        'Italy', 'Ivory Coast', 'Jamaica', 'Japan', 'Jordan', 'Kazakhstan', 'Kenya', 
+        'Kiribati', 'Kuwait', 'Kyrgyzstan', 'Laos', 'Latvia', 'Lebanon', 'Lesotho', 
+        'Liberia', 'Libya', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Madagascar', 
+        'Malawi', 'Malaysia', 'Maldives', 'Mali', 'Malta', 'Marshall Islands', 
+        'Mauritania', 'Mauritius', 'Mexico', 'Micronesia', 'Moldova', 'Monaco', 'Mongolia', 
+        'Montenegro', 'Morocco', 'Mozambique', 'Myanmar', 'Namibia', 'Nauru', 'Nepal', 
+        'Netherlands', 'New Zealand', 'Nicaragua', 'Niger', 'Nigeria', 'North Korea', 
+        'North Macedonia', 'Norway', 'Oman', 'Pakistan', 'Palau', 'Panama', 'Papua New Guinea', 
+        'Paraguay', 'Peru', 'Philippines', 'Poland', 'Portugal', 'Qatar', 'Romania', 
+        'Russia', 'Rwanda', 'Saint Kitts and Nevis', 'Saint Lucia', 'Saint Vincent and the Grenadines', 
+        'Samoa', 'San Marino', 'Sao Tome and Principe', 'Saudi Arabia', 'Senegal', 'Serbia', 
+        'Seychelles', 'Sierra Leone', 'Singapore', 'Slovakia', 'Slovenia', 'Solomon Islands', 
+        'Somalia', 'South Africa', 'South Korea', 'South Sudan', 'Spain', 'Sri Lanka', 
+        'Sudan', 'Suriname', 'Sweden', 'Switzerland', 'Syria', 'Taiwan', 'Tajikistan', 
+        'Tanzania', 'Thailand', 'Togo', 'Tonga', 'Trinidad and Tobago', 'Tunisia', 
+        'Turkey', 'Turkmenistan', 'Tuvalu', 'Uganda', 'Ukraine', 'United Arab Emirates', 
+        'United Kingdom', 'United States', 'Uruguay', 'Uzbekistan', 'Vanuatu', 'Vatican City', 
+        'Venezuela', 'Vietnam', 'Yemen', 'Zambia', 'Zimbabwe'
+    ];
+        function searchcountry(count){
+            const input=document.getElementById('enter').value.toLowerCase()
+            const countriesData=document.querySelector('.output')
+            const Alpha=document.querySelector('.alpha')
+            const Num=document.querySelector('.num')
+            countriesData.innerHTML=' ';
+            const countriessearch=countries.filter((country)=>country.toLowerCase().startsWith(input));
+            Alpha.textContent=` ${input} `;
+            Num.textContent=countriessearch.length;
+            countriessearch.forEach(country=>{
+                const countryBox=document.createElement('div')
+                countryBox.classList.add('country-Box')
+                countryBox.textContent=country
+                countriesData.appendChild(countryBox)
+            } )
+        }
+        document.getElementById('btn').addEventListener('click',searchcountry)
+    </script>
+</body>
+</html>
